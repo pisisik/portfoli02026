@@ -182,6 +182,145 @@
         #adobe-link { color: var(--mid); text-decoration: none; }
         #adobe-link:visited { color: var(--mid); }
         #adobe-link:hover { opacity: 0.7; }
+
+        /* ── Instagram Phone Mockup ── */
+        .insta-section {
+            margin-top: 48px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .insta-label {
+            font-family: 'DM Mono', monospace;
+            font-weight: 400;
+            font-size: 10px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--muted);
+            opacity: 0.7;
+            margin-bottom: 20px;
+        }
+        .phone-frame {
+            width: 220px;
+            background: #1a2e0a;
+            border-radius: 36px;
+            padding: 10px;
+            box-shadow: 0 0 0 1.5px #38A700, 0 20px 60px rgba(41,63,20,0.35), inset 0 0 0 1px rgba(62,255,139,0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .phone-notch {
+            width: 70px; height: 8px;
+            background: #0d1a05;
+            border-radius: 0 0 8px 8px;
+            margin-bottom: 8px;
+        }
+        .phone-notch::after {
+            content: '';
+            display: block;
+            width: 8px; height: 8px;
+            background: #1a2e0a;
+            border-radius: 50%;
+            margin: 0 auto;
+            border: 1.5px solid #38A70044;
+        }
+        .phone-screen {
+            width: 100%;
+            background: var(--bg);
+            border-radius: 26px;
+            overflow: hidden;
+            min-height: 390px;
+            display: flex;
+            flex-direction: column;
+        }
+        .insta-header {
+            background: var(--bg2);
+            padding: 12px 14px 10px;
+            border-bottom: 1px solid rgba(56,103,11,0.15);
+        }
+        .insta-wordmark {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            font-style: italic;
+            color: var(--dk);
+            opacity: 0.85;
+        }
+        .insta-handle {
+            font-family: 'DM Mono', monospace;
+            font-size: 9px;
+            color: var(--mid);
+            letter-spacing: 0.06em;
+            margin-top: 2px;
+        }
+        .insta-profile {
+            padding: 14px 14px 8px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .insta-avatar {
+            position: relative;
+            width: 52px; height: 52px;
+            flex-shrink: 0;
+        }
+        .avatar-ring {
+            position: absolute; inset: -2px;
+            border-radius: 50%;
+            background: conic-gradient(var(--neon), var(--mid), var(--lt), var(--neon));
+            opacity: 0.85;
+        }
+        .avatar-inner {
+            position: absolute; inset: 2px;
+            background: var(--mid2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--neon);
+        }
+        .insta-stats { display: flex; gap: 10px; }
+        .stat { display: flex; flex-direction: column; align-items: center; }
+        .stat-n { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 12px; color: var(--ink); }
+        .stat-l { font-family: 'DM Mono', monospace; font-size: 7px; color: var(--muted); letter-spacing: 0.05em; }
+        .insta-bio { padding: 0 14px 10px; }
+        .insta-name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 11px; color: var(--dk); margin-bottom: 3px; }
+        .insta-desc { font-family: 'DM Mono', monospace; font-size: 8px; color: var(--muted); line-height: 1.5; }
+        .insta-btn {
+            display: block;
+            margin: 0 14px 12px;
+            background: var(--mid2);
+            color: var(--bg);
+            text-align: center;
+            font-family: 'DM Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 7px 0;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+        .insta-btn:hover { background: var(--mid); }
+        .insta-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5px;
+        }
+        .grid-cell { aspect-ratio: 1; background: var(--bg2); }
+        .g1 { background: linear-gradient(135deg, rgba(62,255,139,0.18), rgba(56,103,11,0.22)); }
+        .g2 { background: linear-gradient(135deg, rgba(56,103,11,0.12), rgba(62,255,139,0.1)); }
+        .g5 { background: linear-gradient(135deg, rgba(62,255,139,0.12), rgba(56,167,0,0.18)); }
+        .phone-home-bar {
+            width: 60px; height: 4px;
+            background: rgba(62,255,139,0.3);
+            border-radius: 2px;
+            margin: 10px auto 4px;
+        }
     </style>
 
 </head>
@@ -378,7 +517,49 @@ and she is one of the early examples produced using the Flux model shortly after
                 <img src="nana-image3.jpeg" alt="Photo 3">
             </div>
 
-       
+            <!-- Instagram Phone Mockup -->
+            <div class="insta-section">
+                <div class="insta-label">Follow on Instagram</div>
+                <div class="phone-wrap">
+                    <div class="phone-frame">
+                        <div class="phone-notch"></div>
+                        <div class="phone-screen">
+                            <div class="insta-header">
+                                <div class="insta-wordmark">Instagram</div>
+                                <div class="insta-handle">@nanavirtual2025</div>
+                            </div>
+                            <div class="insta-profile">
+                                <div class="insta-avatar">
+                                    <div class="avatar-ring"></div>
+                                    <div class="avatar-inner">N</div>
+                                </div>
+                                <div class="insta-stats">
+                                    <div class="stat"><span class="stat-n">—</span><span class="stat-l">posts</span></div>
+                                    <div class="stat"><span class="stat-n">—</span><span class="stat-l">followers</span></div>
+                                    <div class="stat"><span class="stat-n">—</span><span class="stat-l">following</span></div>
+                                </div>
+                            </div>
+                            <div class="insta-bio">
+                                <div class="insta-name">Nana Virtual</div>
+                                <div class="insta-desc">AI model · living in the latent space · by @aysen</div>
+                            </div>
+                            <a href="https://www.instagram.com/nanavirtual2025" target="_blank" class="insta-btn">View Profile</a>
+                            <div class="insta-grid">
+                                <div class="grid-cell g1"></div>
+                                <div class="grid-cell g2"></div>
+                                <div class="grid-cell g3"></div>
+                                <div class="grid-cell g4"></div>
+                                <div class="grid-cell g5"></div>
+                                <div class="grid-cell g6"></div>
+                                <div class="grid-cell g7"></div>
+                                <div class="grid-cell g8"></div>
+                                <div class="grid-cell g9"></div>
+                            </div>
+                        </div>
+                        <div class="phone-home-bar"></div>
+                    </div>
+                </div>
+            </div>
 
         </div>
 
