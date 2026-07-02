@@ -89,14 +89,6 @@
   }
   @keyframes fade{0%,100%{opacity:.14}50%{opacity:.42}}
 
-  .insta-link{
-    position:fixed; right:40px; bottom:30px; z-index:30;
-    display:flex; align-items:center; justify-content:center;
-    color:#000; transition:color .2s;
-  }
-  .insta-link:hover{ color:var(--orange); }
-  .insta-link svg{ width:18px; height:18px; display:block; }
-
   /* CONTENT PAGES — plain, black Inter regular */
   .page{
     position:absolute; inset:0; overflow-y:auto; -webkit-overflow-scrolling:touch;
@@ -201,13 +193,6 @@
     <a href="public/projects/project-timetoface.html"><span class="yr">2024</span><span>Time To Face</span></a>
     <a href="public/projects/project-editorial1.html"><span class="yr">2023</span><span>His Rebel</span></a>
   </nav>
-  <a class="insta-link" href="https://www.instagram.com/sols.tice24/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="2.5" y="2.5" width="19" height="19" rx="5"/>
-      <circle cx="12" cy="12" r="4.6"/>
-      <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/>
-    </svg>
-  </a>
 </section>
 
 <!-- Photography — images only -->
@@ -283,22 +268,42 @@ window.addEventListener('resize',setRow);
 
 /* ---------------- POSTERS ---------------- */
 /* Add href only for posters that have a website; leave '' for the rest. */
-/* ---------------- POSTERS ---------------- */
 const POSTERS = [
-  {type:'img', src:'/posters/events.gif', href:'https://events.digitalmedia-bremen.de/', alt:'Events'},
-  {type:'video', src:'/posters/brunch2.mp4', href:''},
-  {type:'video', src:'/posters/juicyworkshop2.mp4', href:''},
-  {type:'img', src:'/posters/chromaticaberration.png', href:'', alt:'Chromatic Aberration'},
-  {type:'video', src:'/posters/inthesamestorm.mp4', href:''},
-  {type:'img', src:'/posters/virtualposes.jpeg', href:'', alt:'Virtual Poses'},
-  {type:'img', src:'/posters/another.jpeg', href:'', alt:'Another'},
-  {type:'img', src:'/posters/timetoface.jpg', href:'', alt:'Time To Face'},
-  {type:'video', src:'/posters/dreamtaste2.mp4', href:''},
-  {type:'img', src:'/posters/inthesamestorm.JPG', href:''},
-  {type:'img', src:'/posters/something.png', href:'', alt:'Something'},
+   {type:'img',   src:'public/posters/events.gif',                href:'https://events.digitalmedia-bremen.de/', alt:'Events'},
+
+ 
+  {type:'video', src:'public/posters/brunch2.mp4',               href:''},
+  {type:'video', src:'public/posters/juicyworkshop2.mp4',        href:''},
+  {type:'img',   src:'public/posters/chromaticaberration.png',   href:'', alt:'Chromatic Aberration'},
+ {type:'video', src:'public/posters/Inthesamestorm.mp4',  href:'' },
+  {type:'img',   src:'public/posters/virtualposes.jpeg',         href:'', alt:'Virtual Poses'},
+   
+  {type:'img',   src:'public/posters/another.jpeg',              href:'', alt:'Another'},
+ 
+  
+
+  {type:'img',   src:'public/posters/timetoface.jpg',            href:'', alt:'Time To Face'},
+   
+ 
+  
+  {type:'video', src:'public/posters/dreamtaste2.mp4',           href:''},
+   {type:'img', src:'public/posters/Inthesamestorm.JPG',  href:'' },
+    {type:'img',   src:'public/posters/something.png',             href:'', alt:'Something'},
 ];
+const postersGrid = document.getElementById('postersGrid');
+POSTERS.forEach((p)=>{
+  const card=document.createElement('div'); card.className='poster-card';
+  const media = p.type==='video'
+    ? `<video autoplay muted loop playsinline><source src="${p.src}" type="video/mp4"></video>`
+    : `<img loading="lazy" src="${p.src}" alt="${p.alt||''}">`;
 
-
+  if(p.href){
+    card.innerHTML = `<a class="poster-media link" href="${p.href}" target="_blank" rel="noopener noreferrer">${media}</a>`;
+  } else {
+    card.innerHTML = `<div class="poster-media">${media}</div>`;
+  }
+  postersGrid.appendChild(card);
+});
 
 /* lightbox */
 const lb=document.getElementById('lb'), lbimg=document.getElementById('lbimg');
