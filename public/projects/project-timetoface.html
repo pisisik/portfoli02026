@@ -1,439 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Timetoface</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Timetoface</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#E8231A; --yellow:#FFD400; --orange:#FF7A00; --ink:#111; --bg:#fff; --muted:#777;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+  html,body{height:100%;}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif; font-weight:400;
+    padding:90px 40px 100px;
+  }
+  a{color:inherit;text-decoration:none;}
 
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  .wrap{max-width:900px; margin:0 auto;}
 
-    <style>
-        :root {
-            --bg:    #F0F5E8;
-            --bg2:   #E2EDD0;
-            --dk:    #293F14;
-            --mid2:  #386C0B;
-            --mid:   #38A700;
-            --lt:    #31D843;
-            --neon:  #3EFF8B;
-            --ink:   #293F14;
-            --muted: #4A6B20;
-            --subtle:#7AA050;
-        }
+  .back{
+    position:fixed; top:18px; left:22px; z-index:20;
+    font-size:10px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--ink); transition:color .2s; cursor:pointer;
+  }
+  .back:hover{ color:var(--orange); }
 
-        * { margin:0; padding:0; box-sizing:border-box; }
+  h1{
+    font-family:'Inter',sans-serif; font-weight:500;
+    text-transform:none;
+    font-size:clamp(24px, 4vw, 30px);
+    line-height:1.12; letter-spacing:-.01em;
+    margin:0 0 14px;
+  }
 
-        body {
-            background-color: var(--bg);
-            font-family: 'DM Mono', monospace;
-            font-weight: 300;
-            color: var(--ink);
-            padding: 40px;
-            box-sizing: border-box;
-            cursor: none !important;
-            overflow-x: hidden;
-        }
+  .exhibitions{
+    font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+    color:#9a9a9a; line-height:1.7; margin-bottom:28px;
+  }
+  .exhibitions a{ color:var(--orange); border-bottom:1px solid currentColor; }
 
-        body::after {
-            content:''; position:fixed; inset:0;
-            background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
-            opacity:.03; pointer-events:none; z-index:9990;
-        }
+  .page-layout{
+    display:flex; gap:64px; align-items:flex-start;
+  }
+  .main-column{ flex:3; min-width:0; }
+  .tech-column{
+    flex:1; min-width:0; max-width:230px;
+    border-left:2px solid var(--ink); padding-left:24px;
+    position:sticky; top:100px;
+  }
+  .tech-item{ margin-bottom:22px; }
+  .tech-item:last-child{ margin-bottom:0; }
+  .tech-label{
+    font-size:10px; letter-spacing:.14em; text-transform:uppercase;
+    color:#bdbdbd; margin-bottom:6px;
+  }
+  .tech-value{
+    font-size:12px; line-height:1.65; color:#2a2a2a;
+  }
 
-        #cur {
-            position: fixed;
-            width: 28px;
-            height: 28px;
-            background: #C9E3AC;
-            border-radius: 0;
-            pointer-events: none;
-            z-index: 99999;
-            transform: translate(-50%, -50%);
-            transition: background 0.15s;
-        }
+  .content{
+    max-width:600px; font-size:13px; line-height:1.85; color:#2a2a2a;
+  }
+  .content a{ color:var(--orange); border-bottom:1px solid currentColor; }
+  #adobe-link{ color:var(--orange); border-bottom:1px solid currentColor; }
+  #adobe-link:hover{ color:var(--red); }
 
-        #physics-canvas {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 8998;
-        }
+  .images-row{
+    display:flex; gap:10px; margin-top:34px;
+  }
+  .images-row img{
+    flex:1; width:0; aspect-ratio:4/3; object-fit:cover;
+    cursor:pointer; transition:opacity .2s;
+  }
+  .images-row img:hover{ opacity:.85; }
 
-        .back {
-            font-family: 'DM Mono', monospace;
-            font-weight: 300;
-            font-size: 12px;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--mid);
-            cursor: pointer;
-            margin-bottom: 40px;
-            display: inline-block;
-            text-decoration: none;
-            transition: opacity 0.3s;
-        }
-        .back:hover { opacity: 0.6; }
+  .video-wrap{ margin-top:24px; }
+  .video-wrap video{ width:100%; display:block; }
 
-        h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: 60px;
-            margin: 0;
-            line-height: 1.05;
-            color: var(--mid2);
-        }
+  .media-pair{
+    display:flex; gap:10px; margin-top:24px;
+    justify-content:center; align-items:stretch;
+    width:100%; max-width:560px;
+  }
+  .media-pair video, .media-pair img{
+    flex:1; width:0; aspect-ratio:9/16; object-fit:cover; display:block; cursor:pointer;
+  }
 
-        .exhibitions {
-            font-family: 'DM Mono', monospace;
-            font-weight: 300;
-            font-size: 12px;
-            letter-spacing: 0.08em;
-            margin-top: 12px;
-            font-style: normal;
-            opacity: 0.5;
-            line-height: 1.8;
-        }
+  #lb{position:fixed; inset:0; z-index:60; background:rgba(17,17,17,.94);
+    display:none; align-items:center; justify-content:center; padding:30px;}
+  #lb.on{display:flex;}
+  #lb img{max-width:92vw; max-height:88vh;}
+  #lb .x{position:fixed; top:18px; right:22px; font-size:26px; color:#fff; cursor:pointer;}
 
-        .exhibitions a { color: var(--mid); text-decoration: none; }
-
-        .page-layout {
-            display: flex;
-            gap: 40px;
-            margin-top: 40px;
-            align-items: flex-start;
-        }
-
-        .main-column { flex: 3; min-width: 0; }
-
-        .tech-column {
-            flex: 1;
-            min-width: 0;
-            border-left: 1px solid var(--mid2);
-            padding-left: 30px;
-            position: sticky;
-            top: 40px;
-        }
-
-        .tech-column h2 {
-            font-family: 'DM Mono', monospace;
-            font-weight: 400;
-            font-size: 10px;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: var(--ink);
-            opacity: 0.5;
-            margin: 0 0 20px 0;
-        }
-
-        .tech-item { margin-bottom: 20px; }
-
-        .tech-label {
-            font-family: 'DM Mono', monospace;
-            font-weight: 400;
-            font-size: 10px;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: var(--muted);
-            opacity: 0.7;
-            margin-bottom: 5px;
-        }
-
-        .tech-value {
-            font-family: 'DM Mono', monospace;
-            font-weight: 300;
-            font-size: 12px;
-            line-height: 1.7;
-            color: var(--ink);
-            opacity: 0.7;
-        }
-
-        .content {
-            width: 85%;
-            line-height: 1.7;
-            font-size: 14px;
-            opacity: 0.85;
-        }
-
-        .images-row {
-            display: flex;
-            gap: 12px;
-            margin-top: 40px;
-        }
-
-        .images-row img {
-            flex: 1;
-            width: 0;
-            border-radius: 4px;
-            object-fit: cover;
-            aspect-ratio: 4/3;
-        }
-
-        .video-wrap { margin-top: 14px; }
-        .video-wrap video {
-            width: 100%;
-            border-radius: 4px;
-            display: block;
-        }
-
-        #adobe-link { color: var(--mid); text-decoration: none; }
-        #adobe-link:visited { color: var(--mid); }
-        #adobe-link:hover { opacity: 0.7; }
-    </style>
-
+  @media(max-width:760px){
+    body{ padding:80px 18px 80px; }
+    .page-layout{ flex-direction:column; gap:36px; }
+    .tech-column{ border-left:none; border-top:2px solid var(--ink); padding-left:0; padding-top:20px; position:static; max-width:none; }
+    .images-row{ flex-direction:column; }
+    .images-row img{ aspect-ratio:4/3; width:100%; }
+    .media-pair{ max-width:none; }
+  }
+</style>
 </head>
-
 <body>
-<div id="cur"></div>
-<canvas id="physics-canvas"></canvas>
 
-<script>
-// ── Square cursor ──
-const cur = document.getElementById('cur');
-const clickColors = ['#C9E3AC','#3EFF8B','#31D843','#90BE6D','#D6F0C0','#38A700'];
-let colorIdx = 0;
+<a class="back" href="../../index.html#home">&larr; Projects</a>
 
-document.addEventListener('mousemove', e => {
-    cur.style.left = e.clientX + 'px';
-    cur.style.top  = e.clientY + 'px';
-});
+<div class="wrap">
+  <h1>Time To Face</h1>
+  <div class="exhibitions">An installation about relativity of time, Bremen, 2024</div>
 
-document.addEventListener('click', () => {
-    colorIdx = (colorIdx + 1) % clickColors.length;
-    cur.style.background = clickColors[colorIdx];
-});
-
-// ── Physics squares ──
-(function(){
-    const C = 28;
-    const COLORS = ['#C9E3AC','#90BE6D','#38A700','#31D843','#3EFF8B','#D6F0C0'];
-    const GRAVITY = 0.5;
-    const PUSH_R  = 85;
-
-    const canvas = document.getElementById('physics-canvas');
-    const ctx    = canvas.getContext('2d');
-    let W = window.innerWidth;
-    let H = window.innerHeight;
-    let cells = [];
-    let mouse = { x: -999, y: -999 };
-
-    function resize(){
-        W = window.innerWidth;
-        H = window.innerHeight;
-        canvas.width  = W;
-        canvas.height = H;
-    }
-    resize();
-    window.addEventListener('resize', resize);
-
-    document.addEventListener('click', e => {
-        cells.push({
-            x: e.clientX - C/2,
-            y: e.clientY - C/2,
-            vx: 0, vy: 0,
-            color: COLORS[Math.floor(Math.random()*COLORS.length)],
-            settled: false
-        });
-        if(cells.length > 300) cells.splice(0, cells.length - 300);
-    });
-
-    document.addEventListener('mousemove', e => {
-        mouse.x = e.clientX;
-        mouse.y = e.clientY;
-    });
-
-    function update(){
-        const floor = H - C;
-        cells.forEach(cell => {
-            if(cell.settled){
-                const touchX = mouse.x >= cell.x && mouse.x <= cell.x + C;
-                const touchY = mouse.y >= cell.y && mouse.y <= cell.y + C;
-                if(touchX && touchY){ cell.settled = false; cell.vx = 0; cell.vy = -2; }
-                else return;
-            }
-
-            cell.vy += GRAVITY;
-
-            const cx = cell.x + C/2, cy = cell.y + C/2;
-            const dx = cx - mouse.x, dy = cy - mouse.y;
-            const dist = Math.sqrt(dx*dx + dy*dy);
-            if(dist < PUSH_R && dist > 1){
-                const f = (PUSH_R - dist) / PUSH_R * 2.5;
-                cell.vx += (dx/dist) * f;
-                cell.vy += (dy/dist) * f;
-            }
-
-            cell.x += cell.vx;
-            cell.y += cell.vy;
-            cell.vx *= 0.75;
-
-            if(cell.x < 0)   { cell.x = 0;   cell.vx = 0; }
-            if(cell.x+C > W) { cell.x = W-C; cell.vx = 0; }
-
-            if(cell.y + C >= H){
-                cell.y  = H - C;
-                cell.vy = 0;
-                cell.vx *= 0.5;
-                if(Math.abs(cell.vx) < 0.3){ cell.vx = 0; cell.settled = true; }
-            }
-
-            for(let i = 0; i < cells.length; i++){
-                const o = cells[i];
-                if(o === cell) continue;
-                const overlapX = cell.x < o.x + C && cell.x + C > o.x;
-                const overlapY = cell.y < o.y + C && cell.y + C > o.y;
-                if(!overlapX || !overlapY) continue;
-                if(o.settled){ o.settled = false; o.vx = cell.vx * 0.3; o.vy = Math.min(cell.vy * 0.3, -0.5); }
-                const overlapW = Math.min(cell.x+C, o.x+C) - Math.max(cell.x, o.x);
-                const overlapH = Math.min(cell.y+C, o.y+C) - Math.max(cell.y, o.y);
-                if(overlapW < overlapH){
-                    const dir = cell.x < o.x ? -1 : 1;
-                    cell.x += dir * overlapW * 0.5; cell.vx = dir * 0.8;
-                    if(!o.settled){ o.x -= dir * overlapW * 0.5; o.vx = -dir * 0.8; }
-                } else {
-                    const dir = cell.y < o.y ? -1 : 1;
-                    cell.y += dir * overlapH * 0.5; cell.vy = 0;
-                    if(!o.settled){ o.y -= dir * overlapH * 0.5; o.vy = 0; }
-                }
-            }
-        });
-    }
-
-    function draw(){
-        ctx.clearRect(0, 0, W, H);
-        cells.forEach(cell => {
-            ctx.fillStyle = cell.color;
-            ctx.fillRect(cell.x, cell.y, C, C);
-            ctx.strokeStyle = 'rgba(41,63,20,0.12)';
-            ctx.lineWidth = 0.5;
-            ctx.strokeRect(cell.x, cell.y, C, C);
-        });
-    }
-
-    function loop(){ update(); draw(); requestAnimationFrame(loop); }
-    loop();
-})();
-
-// ── Lightbox ──
-(function() {
-    const overlay = document.createElement('div');
-    Object.assign(overlay.style, {
-        position: 'fixed', inset: '0', background: 'rgba(41,63,20,0.92)',
-        zIndex: '9999', display: 'none', alignItems: 'center', justifyContent: 'center'
-    });
-    const imgEl = document.createElement('img');
-    Object.assign(imgEl.style, {
-        maxWidth: '90vw', maxHeight: '90vh', borderRadius: '6px',
-        objectFit: 'contain', transform: 'scale(0.92)',
-        transition: 'transform 0.25s ease', pointerEvents: 'none'
-    });
-    overlay.appendChild(imgEl);
-    document.body.appendChild(overlay);
-
-    function openLightbox(src) {
-        imgEl.src = src; overlay.style.display = 'flex';
-        requestAnimationFrame(() => requestAnimationFrame(() => { imgEl.style.transform = 'scale(1)'; }));
-    }
-    function closeLightbox() {
-        imgEl.style.transform = 'scale(0.92)';
-        setTimeout(() => { overlay.style.display = 'none'; }, 220);
-    }
-    overlay.addEventListener('click', closeLightbox);
-    document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox(); });
-})();
-</script>
-
-  <div class="back" onclick="window.location.href='https://aysen-kocakabak.de'">← Back</div>
-
-    <h1>Time To Face</h1>
-
-    <div class="exhibitions">
-    An installation about relativity of time, Bremen, 2024
-      
-    </div>
-
-    <div class="page-layout">
-
-        <div class="main-column">
-
-            <div class="content">
-                <p>
+  <div class="page-layout">
+    <div class="main-column">
+      <div class="content"><p>
 "Time to Face" is an installation about the relativity of time that I 
 was inspired by from the TV series called Dark. 
-<br><br>
+<br/><br/>
 
 “The distinction between past, present, and future is nothing but an illusion. Yesterday, today, and tomorrow are not consecutive; they are connected in a never-ending circle. Everything is connected.” 
 
-<br><br>In my project, I aimed to create a fantasy world to convey that time is 
+<br/><br/>In my project, I aimed to create a fantasy world to convey that time is 
 bent; it is not as it seems. I hope that the installations bend the viewers' 
 minds as well. As for visualization and cinematography, my inspirations 
 are movies called “The Holy Mountain” by Alejandro Jodorowsky, “Colors 
 of pomegranate” by Sergei Iossifowitsch Paradschanow, a story called 
 "Alice in Wonderland," and a painting called “Der Garten der Lüste” by 
 Hieronymus Bosch.
-<br><br>
+<br/><br/>
 In the project I aimed to underline different understandings of time. For this reason, I analyzed my 
 life and visualized it metaphorically in several different ways. How we experience time, what linearity 
 entails, what teleportation signifies, and what time travel encompasses were all examined during this 
 project.
-<br><br>Chess Area -
+<br/><br/>Chess Area -
 Chess represents how our decisions shape the future, while the decisions already 
 made shape today. Players can move the chess pieces and feel the power of 
 decisions. 
-<br><br>Bended Reality -
+<br/><br/>Bended Reality -
 This is what's known as a fantasy forest, where human forms are distorted and unusual. In 
 the lake area of this forest, players are constantly transported and cannot exit once inside. 
 I created this illusion by implementing multiple teleportation points within the same area, 
 forming connections between each other. This represents the concept of an open portal. 
 
-</p>
-            </div>
-
-            <div class="images-row">
-            
-               
-                <img src="timetoface-image1.jpeg" alt="Photo 3">
-                 <img src="timetoface-image2.jpeg" alt="Photo 2">
-                    <img src="timetoface-image3.jpeg" alt="Photo 1">
-            </div>
-
-            <div class="video-wrap">
-    <video controls>
-        <source src="timetoface-video1.mp4" type="video/mp4">
-    </video>
-</div>
-
-<div class="images-row">
-    <img src="timetoface-image4.png" alt="Photo 1">
-    <img src="timetoface-image5.png" alt="Photo 2">
-</div>
-
-        </div>
-
-        <div class="tech-column">
-
-          
-
-            <div class="tech-item">
-                <div class="tech-label">Programs</div>
-                <div class="tech-value">Unreal Engine, Blender, Premiere Pro </div>
-            </div>
-
-            <div class="tech-item">
-                <div class="tech-label">Authorship</div>
-                <div class="tech-value">By Aysen Kocakabak</div>
-            </div>
-
-           
-
-        </div>
-
+</p></div>
+      <div class="images-row"><img src="timetoface-image1.jpeg" alt=""><img src="timetoface-image2.jpeg" alt=""><img src="timetoface-image3.jpeg" alt=""></div>
+      <div class="video-wrap"><video controls><source src="timetoface-video1.mp4" type="video/mp4"></video></div>
+      <div class="images-row"><img src="timetoface-image4.png" alt=""><img src="timetoface-image5.png" alt=""></div>
     </div>
 
- 
+    <div class="tech-column">
+      <div class="tech-item"><div class="tech-label">Programs</div><div class="tech-value">Unreal Engine, Blender, Premiere Pro</div></div>
+      <div class="tech-item"><div class="tech-label">Authorship</div><div class="tech-value">By Aysen Kocakabak</div></div>
+    </div>
+  </div>
+</div>
+
+<div id="lb">
+  <div class="x">&times;</div>
+  <img id="lbimg" src="">
+</div>
+
+<script>
+const lb=document.getElementById('lb'), lbimg=document.getElementById('lbimg');
+document.querySelectorAll('.images-row img, .media-pair img').forEach(img=>{
+  img.addEventListener('click', ()=>{ lbimg.src=img.src; lb.classList.add('on'); });
+});
+lb.addEventListener('click', ()=> lb.classList.remove('on'));
+window.addEventListener('keydown', e=>{ if(e.key==='Escape') lb.classList.remove('on'); });
+</script>
 
 </body>
 </html>
