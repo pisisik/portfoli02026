@@ -284,13 +284,13 @@ window.addEventListener('resize',setRow);
 /* ---------------- POSTERS ---------------- */
 /* Add href only for posters that have a website; leave '' for the rest. */
 const POSTERS = [
-   {type:'img',   src:'public/posters/events.gif',                href:'https://events.digitalmedia-bremen.de/', alt:'Events'},
+    {type:'img',   src:'public/posters/events.gif',                href:'https://events.digitalmedia-bremen.de/', alt:'Events'},
 
  
   {type:'video', src:'public/posters/brunch2.mp4',               href:''},
   {type:'video', src:'public/posters/juicyworkshop2.mp4',        href:''},
   {type:'img',   src:'public/posters/chromaticaberration.png',   href:'', alt:'Chromatic Aberration'},
- {type:'video', src:'public/posters/Inthesamestorm.mp4',  href:'' },
+ {type:'video', src:'public/posters/inthesamestorm.mp4',  href:'' },
   {type:'img',   src:'public/posters/virtualposes.jpeg',         href:'', alt:'Virtual Poses'},
    
   {type:'img',   src:'public/posters/another.jpeg',              href:'', alt:'Another'},
@@ -302,23 +302,9 @@ const POSTERS = [
  
   
   {type:'video', src:'public/posters/dreamtaste2.mp4',           href:''},
-   {type:'img', src:'public/posters/Inthesamestorm.jpg',  href:'' },
+   {type:'img', src:'public/posters/inthesamestorm.jpg',  href:'' },
     {type:'img',   src:'public/posters/something.png',             href:'', alt:'Something'},
 ];
-const postersGrid = document.getElementById('postersGrid');
-POSTERS.forEach((p)=>{
-  const card=document.createElement('div'); card.className='poster-card';
-  const media = p.type==='video'
-    ? `<video autoplay muted loop playsinline><source src="${p.src}" type="video/mp4"></video>`
-    : `<img loading="lazy" src="${p.src}" alt="${p.alt||''}">`;
-
-  if(p.href){
-    card.innerHTML = `<a class="poster-media link" href="${p.href}" target="_blank" rel="noopener noreferrer">${media}</a>`;
-  } else {
-    card.innerHTML = `<div class="poster-media">${media}</div>`;
-  }
-  postersGrid.appendChild(card);
-});
 
 /* lightbox */
 const lb=document.getElementById('lb'), lbimg=document.getElementById('lbimg');
