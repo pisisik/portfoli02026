@@ -89,6 +89,14 @@
   }
   @keyframes fade{0%,100%{opacity:.14}50%{opacity:.42}}
 
+  .insta-link{
+    position:fixed; right:40px; bottom:30px; z-index:30;
+    display:flex; align-items:center; justify-content:center;
+    color:#000; transition:color .2s;
+  }
+  .insta-link:hover{ color:var(--orange); }
+  .insta-link svg{ width:18px; height:18px; display:block; }
+
   /* CONTENT PAGES — plain, black Inter regular */
   .page{
     position:absolute; inset:0; overflow-y:auto; -webkit-overflow-scrolling:touch;
@@ -193,6 +201,13 @@
     <a href="public/projects/project-timetoface.html"><span class="yr">2024</span><span>Time To Face</span></a>
     <a href="public/projects/project-editorial1.html"><span class="yr">2023</span><span>His Rebel</span></a>
   </nav>
+  <a class="insta-link" href="https://www.instagram.com/sols.tice24/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2.5" y="2.5" width="19" height="19" rx="5"/>
+      <circle cx="12" cy="12" r="4.6"/>
+      <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/>
+    </svg>
+  </a>
 </section>
 
 <!-- Photography — images only -->
