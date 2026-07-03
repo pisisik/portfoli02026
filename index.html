@@ -65,7 +65,28 @@
   }
   .side-projects a:hover{ opacity:1; color:var(--orange); }
   @media(max-width:900px){
-    .side-projects{ display:none; }
+    #glitch{ height:min(78vh, calc(94vw*1.7778)); }
+    .side-projects{
+      display:flex;
+      flex-direction:row;
+      position:fixed;
+      left:0; right:0; top:auto; bottom:0;
+      width:100%; max-width:100%;
+      gap:20px;
+      padding:14px 16px;
+      overflow-x:auto;
+      -webkit-overflow-scrolling:touch;
+      background:rgba(255,255,255,.92);
+      backdrop-filter:blur(6px);
+      -webkit-backdrop-filter:blur(6px);
+      z-index:25;
+    }
+    .side-projects a{
+      flex:none;
+      white-space:nowrap;
+      opacity:.85;
+    }
+    .hint{ display:none; }
   }
 
   /* ---------- VIEWS ---------- */
