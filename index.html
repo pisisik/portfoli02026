@@ -48,6 +48,13 @@
     transition:color .2s;
   }
   .nav-links a:hover{ color:var(--orange); }
+  .ig-corner{
+    position:fixed; left:22px; bottom:18px; z-index:20;
+    display:inline-flex; align-items:center; line-height:0; color:#000;
+    transition:color .2s;
+  }
+  .ig-corner svg{ width:18px; height:18px; display:block; }
+  .ig-corner:hover{ color:var(--orange); }
 
   /* ---------- HOME PROJECT SIDEBAR ---------- */
   .side-projects{
@@ -194,12 +201,20 @@
 </head>
 <body>
 
+<a class="ig-corner" href="https://www.instagram.com/sols.tice24/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="3" width="18" height="18" rx="5"/>
+    <circle cx="12" cy="12" r="4"/>
+    <circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/>
+  </svg>
+</a>
+
+
 <nav>
   <a class="brand" href="#home">Aysen Kocakabak Portfolio</a>
   <div class="nav-links">
      <button data-v="posters">Posters</button>
     <a href="https://kckbkaysen.myportfolio.com/" target="_blank" rel="noopener noreferrer">Photography</a>
-   
   </div>
 </nav>
 
