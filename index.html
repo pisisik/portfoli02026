@@ -48,13 +48,6 @@
     transition:color .2s;
   }
   .nav-links a:hover{ color:var(--orange); }
-  .ig-corner{
-    position:fixed; left:22px; bottom:18px; z-index:20;
-    display:inline-flex; align-items:center; line-height:0; color:#000;
-    transition:color .2s;
-  }
-  .ig-corner svg{ width:18px; height:18px; display:block; }
-  .ig-corner:hover{ color:var(--orange); }
 
   /* ---------- HOME PROJECT SIDEBAR ---------- */
   .side-projects{
@@ -72,28 +65,7 @@
   }
   .side-projects a:hover{ opacity:1; color:var(--orange); }
   @media(max-width:900px){
-    #glitch{ height:min(78vh, calc(94vw*1.7778)); }
-    .side-projects{
-      display:flex;
-      flex-direction:row;
-      position:fixed;
-      left:0; right:0; top:auto; bottom:0;
-      width:100%; max-width:100%;
-      gap:20px;
-      padding:14px 16px;
-      overflow-x:auto;
-      -webkit-overflow-scrolling:touch;
-      background:rgba(255,255,255,.92);
-      backdrop-filter:blur(6px);
-      -webkit-backdrop-filter:blur(6px);
-      z-index:25;
-    }
-    .side-projects a{
-      flex:none;
-      white-space:nowrap;
-      opacity:.85;
-    }
-    .hint{ display:none; }
+    .side-projects{ display:none; }
   }
 
   /* ---------- VIEWS ---------- */
@@ -201,20 +173,12 @@
 </head>
 <body>
 
-<a class="ig-corner" href="https://www.instagram.com/sols.tice24/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <rect x="3" y="3" width="18" height="18" rx="5"/>
-    <circle cx="12" cy="12" r="4"/>
-    <circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/>
-  </svg>
-</a>
-
-
 <nav>
   <a class="brand" href="#home">Aysen Kocakabak Portfolio</a>
   <div class="nav-links">
      <button data-v="posters">Posters</button>
     <a href="https://kckbkaysen.myportfolio.com/" target="_blank" rel="noopener noreferrer">Photography</a>
+   
   </div>
 </nav>
 
@@ -323,7 +287,7 @@ const POSTERS = [
  
   
   {type:'video', src:'public/posters/dreamtaste2.mp4',           href:''},
-   {type:'img', src:'public/posters/Inthesamestorm.png',  href:'' },
+   {type:'img', src:'public/posters/Inthesamestorm.JPG',  href:'' },
     {type:'img',   src:'public/posters/something.png',             href:'', alt:'Something'},
 ];
 const postersGrid = document.getElementById('postersGrid');
