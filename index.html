@@ -49,7 +49,7 @@
   }
   .nav-links a:hover{ color:var(--orange); }
   .ig-corner{
-    position:fixed; left:40px; bottom:18px; z-index:20;
+    position:fixed; left:22px; bottom:18px; z-index:20;
     display:inline-flex; align-items:center; line-height:0; color:#000;
     transition:color .2s;
   }
@@ -58,29 +58,14 @@
 
   /* ---------- HOME PROJECT SIDEBAR ---------- */
   .side-projects{
-    display:flex;
-    flex-direction:row;
-    position:fixed;
-    left:0; right:0; top:auto; bottom:60px;
-    width:100%; max-width:100%;
-    gap:28px;
-    padding:14px 40px;
-    overflow-x:auto;
-    -webkit-overflow-scrolling:touch;
-    background:rgba(255,255,255,.92);
-    backdrop-filter:blur(6px);
-    -webkit-backdrop-filter:blur(6px);
-    z-index:25;
-    cursor:grab;
-    scrollbar-width:none;
+    position:fixed; left:37px; top:120px;
+    z-index:20; display:flex; flex-direction:column; gap:11px;
+    width:300px; max-width:300px;
   }
-  .side-projects::-webkit-scrollbar{ display:none; }
-  .side-projects.dragging{ cursor:grabbing; scroll-behavior:auto; user-select:none; }
   .side-projects a{
     font-size:12px; line-height:1.35;
     color:#000; opacity:.5; transition:opacity .2s, color .2s;
     display:flex; gap:9px;
-    flex:none; white-space:nowrap;
   }
   .side-projects a .yr{
     color:#bdbdbd; font-variant-numeric:tabular-nums; flex:none;
@@ -88,6 +73,26 @@
   .side-projects a:hover{ opacity:1; color:var(--orange); }
   @media(max-width:900px){
     #glitch{ height:min(78vh, calc(94vw*1.7778)); }
+    .side-projects{
+      display:flex;
+      flex-direction:row;
+      position:fixed;
+      left:0; right:0; top:auto; bottom:0;
+      width:100%; max-width:100%;
+      gap:20px;
+      padding:14px 16px;
+      overflow-x:auto;
+      -webkit-overflow-scrolling:touch;
+      background:rgba(255,255,255,.92);
+      backdrop-filter:blur(6px);
+      -webkit-backdrop-filter:blur(6px);
+      z-index:25;
+    }
+    .side-projects a{
+      flex:none;
+      white-space:nowrap;
+      opacity:.85;
+    }
     .hint{ display:none; }
   }
 
@@ -271,34 +276,6 @@ function go(v){
 btns.forEach(b=>b.addEventListener('click',()=>{location.hash=b.dataset.v;}));
 document.querySelector('.brand').addEventListener('click',e=>{e.preventDefault();location.hash='home';});
 window.addEventListener('hashchange',()=>go((location.hash||'#home').slice(1)));
-
-/* ---------------- DRAG-TO-SCROLL PROJECTS BAR ---------------- */
-(function(){
-  const sp = document.querySelector('.side-projects');
-  if(!sp) return;
-  let isDown=false, startX=0, scrollStart=0, moved=false;
-  sp.addEventListener('mousedown', e=>{
-    isDown=true; moved=false;
-    sp.classList.add('dragging');
-    startX = e.pageX;
-    scrollStart = sp.scrollLeft;
-  });
-  window.addEventListener('mousemove', e=>{
-    if(!isDown) return;
-    const dx = e.pageX - startX;
-    if(Math.abs(dx) > 4) moved = true;
-    sp.scrollLeft = scrollStart - dx;
-  });
-  window.addEventListener('mouseup', ()=>{
-    if(!isDown) return;
-    isDown=false;
-    sp.classList.remove('dragging');
-  });
-  // prevent link click from firing right after a drag
-  sp.addEventListener('click', e=>{
-    if(moved){ e.preventDefault(); e.stopPropagation(); }
-  }, true);
-})();
 
 /* ---------------- ARCHIVE GRID ---------------- */
 const grid = document.getElementById('grid');
