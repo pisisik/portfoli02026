@@ -91,6 +91,8 @@
     .hint{ display:none; }
   }
 
+
+
   /* ---------- VIEWS ---------- */
   .view{position:fixed; inset:0; display:none;}
   .view.active{display:block;}
@@ -192,6 +194,46 @@
     .poster-masonry{ columns:1; column-gap:0; }
     .poster-card{ max-width:420px; margin-left:auto; margin-right:auto; }
   }
+
+  /* ---------- DESKTOP HOME LAYOUT (list left, art right) ----------
+     Placed last on purpose so it wins over the earlier base
+     #home / #stage / #glitch / .side-projects rules on desktop widths. */
+  @media(min-width:901px){
+    #home{
+      background:var(--bg);
+    }
+    #stage{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .side-projects{
+      position:fixed;
+      top:110px; /* fallback before JS measures the canvas; overridden inline */
+      left:60px;
+      right:auto;
+      bottom:auto;
+      flex-direction:column;
+      align-items:flex-start;
+      width:auto;
+      max-width:300px;
+      padding:0;
+      gap:20px;
+      background:none;
+      backdrop-filter:none;
+      -webkit-backdrop-filter:none;
+      overflow-x:visible;
+      cursor:default;
+      z-index:25;
+    }
+    .side-projects a{
+      white-space:normal;
+      font-size:13px;
+      line-height:1.4;
+    }
+  }
 </style>
 </head>
 <body>
@@ -267,6 +309,7 @@ function go(v){
   running = (v==='home');
   if(running) requestAnimationFrame(loop);
   if(v==='archive') requestAnimationFrame(setRow);
+  if(v==='home') requestAnimationFrame(alignProjectsList);
 }
 btns.forEach(b=>b.addEventListener('click',()=>{location.hash=b.dataset.v;}));
 document.querySelector('.brand').addEventListener('click',e=>{e.preventDefault();location.hash='home';});
@@ -324,6 +367,25 @@ function setRow(){
   });
 }
 window.addEventListener('resize',setRow);
+
+/* align the desktop project list's top edge with the title text
+   ("IN THE...") inside the artwork, which starts ~15.1% down the
+   540x960 source image */
+const TITLE_TOP_FRACTION = 145/960;
+function alignProjectsList(){
+  const sp = document.querySelector('.side-projects');
+  const glitchEl = document.getElementById('glitch');
+  if(!sp || !glitchEl) return;
+  if(window.innerWidth > 900){
+    const rect = glitchEl.getBoundingClientRect();
+    sp.style.top = (rect.top + rect.height*TITLE_TOP_FRACTION) + 'px';
+  } else {
+    sp.style.top = '';
+  }
+}
+window.addEventListener('resize', alignProjectsList);
+window.addEventListener('load', alignProjectsList);
+requestAnimationFrame(alignProjectsList);
 
 /* ---------------- POSTERS ---------------- */
 /* Add href only for posters that have a website; leave '' for the rest. */
