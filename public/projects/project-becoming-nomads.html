@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>becoming-nomads</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#E8231A; --yellow:#FFD400; --orange:#FF7A00; --ink:#111; --bg:#fff; --muted:#777;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+  html,body{height:100%;}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif; font-weight:400;
+    padding:90px 40px 100px;
+  }
+  a{color:inherit;text-decoration:none;}
+
+  .wrap{max-width:900px; margin:0 auto;}
+
+  .back{
+    position:fixed; top:18px; left:22px; z-index:20;
+    font-size:10px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--ink); transition:color .2s; cursor:pointer;
+  }
+  .back:hover{ color:var(--orange); }
+
+  h1{
+    font-family:'Inter',sans-serif; font-weight:500;
+    text-transform:none;
+    font-size:clamp(24px, 4vw, 30px);
+    line-height:1.12; letter-spacing:-.01em;
+    margin:0 0 14px;
+  }
+
+  .exhibitions{
+    font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+    color:#9a9a9a; line-height:1.7; margin-bottom:28px;
+  }
+  .exhibitions a{ color:var(--orange); border-bottom:1px solid currentColor; }
+
+  .page-layout{
+    display:flex; gap:64px; align-items:flex-start;
+  }
+  .main-column{ flex:3; min-width:0; }
+  .tech-column{
+    flex:1; min-width:0; max-width:230px;
+    border-left:2px solid var(--ink); padding-left:24px;
+    position:sticky; top:100px;
+  }
+  .tech-item{ margin-bottom:22px; }
+  .tech-item:last-child{ margin-bottom:0; }
+  .tech-label{
+    font-size:10px; letter-spacing:.14em; text-transform:uppercase;
+    color:#bdbdbd; margin-bottom:6px;
+  }
+  .tech-value{
+    font-size:12px; line-height:1.65; color:#2a2a2a;
+  }
+
+  .content{
+    max-width:600px; font-size:13px; line-height:1.85; color:#2a2a2a;
+  }
+  .content a{ color:var(--orange); border-bottom:1px solid currentColor; }
+  #adobe-link{ color:var(--orange); border-bottom:1px solid currentColor; }
+  #adobe-link:hover{ color:var(--red); }
+
+  .images-row{
+    display:flex; gap:10px; margin-top:34px;
+  }
+  .images-row img{
+    flex:1; width:0; aspect-ratio:4/3; object-fit:cover;
+    cursor:pointer; transition:opacity .2s;
+  }
+  .images-row img:hover{ opacity:.85; }
+
+  .video-wrap{ margin-top:24px; }
+  .video-wrap video{ width:100%; display:block; }
+
+  .media-pair{
+    display:flex; gap:10px; margin-top:24px;
+    justify-content:center; align-items:stretch;
+    width:100%; max-width:560px;
+  }
+  .media-pair video, .media-pair img{
+    flex:1; width:0; aspect-ratio:9/16; object-fit:cover; display:block; cursor:pointer;
+  }
+
+  #lb{position:fixed; inset:0; z-index:60; background:rgba(17,17,17,.94);
+    display:none; align-items:center; justify-content:center; padding:30px;}
+  #lb.on{display:flex;}
+  #lb img{max-width:92vw; max-height:88vh;}
+  #lb .x{position:fixed; top:18px; right:22px; font-size:26px; color:#fff; cursor:pointer;}
+
+  @media(max-width:760px){
+    body{ padding:80px 18px 80px; }
+    .page-layout{ flex-direction:column; gap:36px; }
+    .tech-column{ border-left:none; border-top:2px solid var(--ink); padding-left:0; padding-top:20px; position:static; max-width:none; }
+    .images-row{ flex-direction:column; }
+    .images-row img{ aspect-ratio:4/3; width:100%; }
+    .media-pair{ max-width:none; }
+  }
+</style>
+</head>
+<body>
+
+<a class="back" href="../../index.html#home">&larr; Projects</a>
+
+<div class="wrap">
+  <h1>Becoming-nomads</h1>
+  <div class="exhibitions">Interactive Installation, Breminale &ndash; MS Dauerwelle, Anleger Tiefer 2, Bremen, 2026<br/><a href="https://www.instagram.com/temporary_spaces/" target="_blank">Instagram</a></div>
+
+  <div class="page-layout">
+    <div class="main-column">
+      <div class="content"><p>
+
+"becoming-nomads" draws upon the nomadic and patriarchal histories of the ship to explore the "Nomadic Subject," a concept rooted in feminist practices, particularly the writings of Rosi Braidotti. The work proposes a space of inclusion where diverse participants engage in a collective, relational act: a continuously changing structure composed of coloured nautical ropes carrying fragments of text. Visitors are invited to sit together, read the texts, tie new knots, and pass the ropes to one another &mdash; continuously transforming the structure.
+
+<br/><br/><i>Wherever lines cross, pass through, bend around and become entangled, a knot inevitably emerges.</i>
+
+<br/><br/><i>"One must start by leaving open spaces of experimentation, of search, of transition: becoming-nomads."</i> &mdash; Rosi Braidotti
+
+<br/><br/>Within the group, I was responsible for the project's public-facing presence and documentation: managing the @temporary_spaces Instagram account throughout the preparation and exhibition period, acting as the project photographer during both the build-up and the exhibition itself, and documenting all related events. I also designed the poster and GIF and handled email correspondence for the project. During Breminale, I presented becoming-nomads on-site aboard the Dauerwelle.
+
+</p></div>
+      <div class="images-row">
+        <img src="becomingnomads-image1.jpg" alt="">
+        <img src="becomingnomads-image2.jpg" alt="">
+        <img src="becomingnomads-image3.jpg" alt="">
+      </div>
+      <div class="video-wrap">
+        <video controls>
+          <source src="becomingnomads-video1.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+         <div class="images-row"><img src="becomingnomads-image4.JPG" alt=""><img src="becomingnomads-image5.JPG" alt=""></div>
+    </div>
+
+    <div class="tech-column">
+      <div class="tech-item"><div class="tech-label">Structure</div><div class="tech-value">Kanirope multibraid rope, pedestals, 150m (8mm, 12mm, 16mm dia.)</div></div>
+      <div class="tech-item"><div class="tech-label">Concept</div><div class="tech-value">Based on the writings of Rosi Braidotti</div></div>
+      <div class="tech-item"><div class="tech-label">Interaction</div><div class="tech-value">Participatory &mdash; visitors tie knots and pass the rope</div></div>
+      <div class="tech-item"><div class="tech-label">Supervision</div><div class="tech-value">Asl&#305; Serbest, Temporary Spaces<br/>Lea Letzel, Performance and New Musical Performance Practices</div></div>
+      <div class="tech-item"><div class="tech-label">Documentation &amp; Communication</div><div class="tech-value">Aysen Kocakabak &mdash; Instagram (@temporary_spaces), event photography, poster &amp; GIF design, email correspondence, on-site presentation at Breminale</div></div>
+      <div class="tech-item"><div class="tech-label">Authorship</div><div class="tech-value">Aysen Kocakabak, Olivia M&uuml;ller, Yeongjun Park</div></div>
+    </div>
+  </div>
+</div>
+
+<div id="lb">
+  <div class="x">&times;</div>
+  <img id="lbimg" src="">
+</div>
+
+<script>
+const lb=document.getElementById('lb'), lbimg=document.getElementById('lbimg');
+document.querySelectorAll('.images-row img, .media-pair img').forEach(img=>{
+  img.addEventListener('click', ()=>{ lbimg.src=img.src; lb.classList.add('on'); });
+});
+lb.addEventListener('click', ()=> lb.classList.remove('on'));
+window.addEventListener('keydown', e=>{ if(e.key==='Escape') lb.classList.remove('on'); });
+</script>
+
+</body>
+</html>
